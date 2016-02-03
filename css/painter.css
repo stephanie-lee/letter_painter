@@ -1,0 +1,19 @@
+#easel {
+  width: 500px;
+  margin: 0 auto;
+  background: white;
+}
+
+.square {
+  outline: 1px solid gray;
+  width: 25px;
+  height: 25px;
+  float: left;
+  transition: outline 0.5s, background-color 0.5s;
+  cursor: cell;
+  background-color: white;
+}
+
+body {
+  background-color: gray;
+}
