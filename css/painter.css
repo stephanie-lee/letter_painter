@@ -1,13 +1,13 @@
-#easel {
-  width: 500px;
+#board {
+  width: 450px;
   margin: 0 auto;
   background: white;
 }
 
 .square {
   outline: 1px solid gray;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   float: left;
   transition: outline 0.5s, background-color 0.5s;
   cursor: cell;
