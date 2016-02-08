@@ -5,6 +5,9 @@ function Painter($board, Alphabet) {
   this.$board = $board;
   this.alphabet = Alphabet;
   this.stencil = _.sample(Alphabet);
+  this.letterIndex = 0;
+  // this.letterList = ['letterTest'];
+  this.letterList = ['letterA', 'letterB', 'letterC', 'letterD', 'letterE', 'letterF', 'letterG', 'letterH', 'letterI'];
   this.numPixels = 0;
   this.totalWhiteSquares = 0;
   this.whiteSquares = 0;
@@ -17,7 +20,14 @@ function Painter($board, Alphabet) {
 
 $.extend(Painter.prototype, {
   setupBoard: function() {
-    this.stencil = _.sample(this.alphabet);
+    this.stencil = this.alphabet[this.letterList[this.letterIndex]];
+
+    this.letterIndex += 1;
+
+    if (this.letterIndex >= this.letterList.length){
+      this.letterIndex = this.letterIndex % this.letterList.length;
+    }
+
     for (var row = 0; row < this.stencil.length; row ++) {
       this.addRow(row);
     }
