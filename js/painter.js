@@ -6,6 +6,7 @@ function Painter($board, Alphabet) {
   this.alphabet = Alphabet;
   this.stencil = _.sample(Alphabet);
   this.numPixels = 0;
+  this.totalWhiteSquares = 0;
   this.whiteSquares = 0;
   this.numRows = 0;
   this.setupBoard();
@@ -20,6 +21,14 @@ $.extend(Painter.prototype, {
     for (var row = 0; row < this.stencil.length; row ++) {
       this.addRow(row);
     }
+
+    var percentage = Math.floor((this.totalWhiteSquares - this.whiteSquares) / this.totalWhiteSquares * 100);
+    var reminder = "You're at " + percentage.toString() + "%. Keep going!";
+    $reminder = $("<div>")
+      .addClass('reminder')
+      .css("background-color", "#ED5565")
+      .text(reminder);
+    this.$board.append($reminder);
   },
 
   addRow: function(rowIndex) {
@@ -30,6 +39,7 @@ $.extend(Painter.prototype, {
       } else {
         $square = $("<div>").addClass('square').data('id', this.numPixels).css("background-color", "white");
         this.whiteSquares += 1;
+        this.totalWhiteSquares = this.whiteSquares;
       }
       this.numPixels += 1;
       this.$board.append($square);
@@ -64,19 +74,20 @@ $.extend(Painter.prototype, {
       var color = _.sample(colors);
       $square.css('background', color);
       this.whiteSquares -= 1;
-      
-      if (this.whiteSquares === 0) {
-        this.updateCount();
-      }
-    } else {
 
+      if (this.whiteSquares === 0) {
+        this.finish();
+      }
     }
-    // this.brushStrokes[this.brushStrokes.length - 1].push($square.data('id'));
+    var percentage = Math.floor((this.totalWhiteSquares - this.whiteSquares) / this.totalWhiteSquares * 100);
+    var reminder = "You're at " + percentage.toString() + "%. Keep going!";
+    $(".reminder").text(reminder);
   },
 
-  updateCount: function() {
+  finish: function() {
     if (this.whiteSquares === 0) {
       $banner = $("<div>").addClass('banner').css("background-color", "green").text("Nice!");
+      $(".reminder").remove();
       this.$board.append($banner);
       that = this;
       window.setTimeout(function() {
