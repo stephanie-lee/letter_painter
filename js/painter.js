@@ -1,26 +1,25 @@
-var colors = ['yellow', 'magenta', 'teal', 'orange'];
+var colors = [ '#EC87C0', '#4FCE59', '#ED5565', '#48CFAD', '#FFCE54', '#3BAFDA'];
 _ = require('underscore');
 
-function Painter($board, stencil) {
+function Painter($board, Alphabet) {
   this.$board = $board;
-  this.stencil = stencil;
+  this.alphabet = Alphabet;
+  this.stencil = _.sample(Alphabet);
   this.numPixels = 0;
+  this.whiteSquares = 0;
   this.numRows = 0;
   this.setupBoard();
   this.registerEvents();
   this.painting = false;
   this.brushColor = 'black';
-  // this.brushStrokes = [];
 }
 
 $.extend(Painter.prototype, {
   setupBoard: function() {
+    this.stencil = _.sample(this.alphabet);
     for (var row = 0; row < this.stencil.length; row ++) {
       this.addRow(row);
     }
-    // for ( var row = 0; row < 20; row++ ) {
-    //   this.addRow();
-    // }
   },
 
   addRow: function(rowIndex) {
@@ -30,6 +29,7 @@ $.extend(Painter.prototype, {
         $square = $("<div>").addClass('square').data('id', this.numPixels).css("background-color", "black");
       } else {
         $square = $("<div>").addClass('square').data('id', this.numPixels).css("background-color", "white");
+        this.whiteSquares += 1;
       }
       this.numPixels += 1;
       this.$board.append($square);
@@ -60,15 +60,31 @@ $.extend(Painter.prototype, {
 
     var $square = $(e.currentTarget);
 
-    if ($(e.currentTarget).css( "background-color" ) === "rgb(0, 0, 0)") {
-      return;
-    } else {
+    if ($(e.currentTarget).css( "background-color" ) === "rgb(255, 255, 255)") {
       var color = _.sample(colors);
       $square.css('background', color);
+      this.whiteSquares -= 1;
+      
+      if (this.whiteSquares === 0) {
+        this.updateCount();
+      }
+    } else {
+
     }
     // this.brushStrokes[this.brushStrokes.length - 1].push($square.data('id'));
-  }
+  },
 
+  updateCount: function() {
+    if (this.whiteSquares === 0) {
+      $banner = $("<div>").addClass('banner').css("background-color", "green").text("Nice!");
+      this.$board.append($banner);
+      that = this;
+      window.setTimeout(function() {
+        that.$board.empty();
+        that.setupBoard();
+      }, 3000);
+    }
+  }
 });
 
 module.exports = Painter;
