@@ -1,0 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
+
+.title {
+  text-align: center;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#board {
+  width: 600px;
+  margin: 0 auto;
+  background: white;
+}
+
+.square {
+  outline: 1px solid gray;
+  width: 30px;
+  height: 30px;
+  float: left;
+  transition: outline 0.5s, background-color 0.5s;
+  cursor: cell;
+  background-color: white;
+  text-align: center;
+}
+
+body {
+  background-color: #4FC1E9;
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.square:hover {
+  background-color: gray;
+}
+
+.banner, .reminder {
+  text-align: center;
+  font-size: 40px;
+}
