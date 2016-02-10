@@ -7,7 +7,7 @@ function Painter($board, Alphabet) {
   this.stencil = _.sample(Alphabet);
   this.letterIndex = 0;
   // this.letterList = ['letterTest'];
-  this.letterList = ['letterA', 'letterB', 'letterC', 'letterD', 'letterE', 'letterF', 'letterG', 'letterH', 'letterI'];
+  this.letterList = ['letterA', 'letterB', 'letterC', 'letterD', 'letterE', 'letterF', 'letterG', 'letterH', 'letterI', 'letterJ'];
   this.numPixels = 0;
   this.totalWhiteSquares = 0;
   this.whiteSquares = 0;
