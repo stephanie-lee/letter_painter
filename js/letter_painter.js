@@ -1,5 +1,5 @@
-var Painter = require('./painter');
-var Alphabet = require('./letters.js');
+// var Painter = require('./painter.js');
+// var Alphabet = require('./letters.js');
 
 
 $(function () {

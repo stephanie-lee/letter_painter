@@ -1,5 +1,5 @@
 var colors = [ '#EC87C0', '#4FCE59', '#ED5565', '#48CFAD', '#FFCE54', '#3BAFDA'];
-_ = require('underscore');
+// _ = require('underscore');
 
 function Painter($board, Alphabet) {
   this.$board = $board;
@@ -57,6 +57,7 @@ $.extend(Painter.prototype, {
   },
 
   registerEvents: function(e) {
+    debugger
     this.$board.on('mousedown', '.square', this.startPainting.bind(this));
     this.$board.on('mouseenter', '.square', this.paintSquare.bind(this));
     this.$board.on('mouseup', '.square', this.stopPainting.bind(this));
@@ -108,4 +109,4 @@ $.extend(Painter.prototype, {
   }
 });
 
-module.exports = Painter;
+// module.exports = Painter;
