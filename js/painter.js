@@ -7,7 +7,7 @@ function Painter($board, Alphabet) {
   this.stencil = _.sample(Alphabet);
   this.letterIndex = 0;
   // this.letterList = ['letterTest'];
-  this.letterList = ['letterA', 'letterB', 'letterC', 'letterD', 'letterE', 'letterF', 'letterG', 'letterH', 'letterI'];
+  this.letterList = ['letterA', 'letterB', 'letterC', 'letterD', 'letterE', 'letterF', 'letterG', 'letterH', 'letterI', 'letterJ'];
   this.numPixels = 0;
   this.totalWhiteSquares = 0;
   this.whiteSquares = 0;
@@ -57,7 +57,6 @@ $.extend(Painter.prototype, {
   },
 
   registerEvents: function(e) {
-    debugger
     this.$board.on('mousedown', '.square', this.startPainting.bind(this));
     this.$board.on('mouseenter', '.square', this.paintSquare.bind(this));
     this.$board.on('mouseup', '.square', this.stopPainting.bind(this));
